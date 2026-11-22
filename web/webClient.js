@@ -1,7 +1,9 @@
 // Browser version of electronClient.js from the ScratchJr desktop community port.
 // The Electron IPC is replaced by an in-page backend (web/backend.js).
 import {ipcRenderer, initBackend, navigate, getAudioDataAsync, getTextResourceAsync} from './backend';
+import {installTouchShim} from './touchShim';
 window.__sjrNavigate = navigate;
+installTouchShim();
 
 const DEBUG = /[?&]debug=1/.test(window.location.search);
 const DEBUG_FILEIO =  DEBUG && true;       // saving and loading user files
