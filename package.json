@@ -1,0 +1,22 @@
+{
+  "name": "scratchjr-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Browser/PWA port of the ScratchJr desktop community edition (personal use)",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "deploy": "node deploy.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.19.0",
+    "intl": "^1.2.5",
+    "intl-messageformat": "^2.2.0",
+    "jszip": "^3.10.2",
+    "snapsvg": "^0.5.1",
+    "sql.js": "^1.17.0"
+  }
+}
