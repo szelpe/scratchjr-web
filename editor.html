@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="cache-control" content="no-cache">
+<meta charset="utf-8">
+
+<head>
+<title>ScratchJr</title>
+
+<script>
+    window.scratchJrPage = 'editor';
+</script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#7c55c7">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script src="webclient.bundle.js"></script>
+<script src="app.bundle.js"></script>
+<script>if("serviceWorker" in navigator){var c=!!navigator.serviceWorker.controller,r=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(c&&!r){r=true;location.reload();}});navigator.serviceWorker.register("sw.js",{updateViaCache:"none"});}</script>
+</head>
+<body style="background: white;">
+<div class="frame" id="frame"></div>
+<div class="libframe" id="libframe"></div>
+<div class="paintframe" id="paintframe"></div>
+
+</body>
+</html>
