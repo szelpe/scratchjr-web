@@ -5,6 +5,18 @@ import {installTouchShim} from './touchShim';
 window.__sjrNavigate = navigate;
 installTouchShim();
 
+// small version label on the start screen, to check which build is running
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.scratchJrPage !== 'index') {
+        return;
+    }
+    const v = document.createElement('div');
+    v.textContent = 'web ' + __BUILD_ID__; // eslint-disable-line no-undef
+    v.style.cssText = 'position:fixed;right:8px;bottom:6px;font:12px sans-serif;color:rgba(255,255,255,.7);' +
+        'z-index:99999;pointer-events:none';
+    document.body.appendChild(v);
+});
+
 const DEBUG = /[?&]debug=1/.test(window.location.search);
 const DEBUG_FILEIO =  DEBUG && true;       // saving and loading user files
 const DEBUG_RESOURCEIO = DEBUG && false;  // files from the application directory

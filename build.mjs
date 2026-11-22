@@ -62,6 +62,7 @@ await esbuild.build({
     entryPoints: [path.join(root, 'web', 'webClient.js')],
     outfile: path.join(dist, 'webclient.bundle.js'),
     format: 'iife',
+    define: {...common.define, __BUILD_ID__: JSON.stringify(new Date().toISOString().slice(0, 16).replace('T', ' '))},
     // sql.js references node modules in code paths never used in the browser
     external: ['fs', 'path', 'crypto']
 });
@@ -91,7 +92,10 @@ const headExtra = [
     '<link rel="apple-touch-icon" href="icons/icon-192.png">',
     '<script src="webclient.bundle.js"></script>',
     '<script src="app.bundle.js"></script>',
-    '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>'
+    // when an updated service worker takes over, reload once to run the new code
+    '<script>if("serviceWorker" in navigator){var c=!!navigator.serviceWorker.controller,r=false;' +
+        'navigator.serviceWorker.addEventListener("controllerchange",function(){if(c&&!r){r=true;location.reload();}});' +
+        'navigator.serviceWorker.register("sw.js",{updateViaCache:"none"});}</script>'
 ].join('\n');
 
 for (const f of fs.readdirSync(dist).filter((n) => n.endsWith('.html'))) {
